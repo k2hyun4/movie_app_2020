@@ -1,43 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 
-function Food({name, rating}) {
-  return (
-    <div>
-      <h1>I like {name}</h1>
-      <h2>rating : {rating} / 5.0</h2>  
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    this.setState(current => ({count: current.count + 1}));
+  };
+
+  minus = () => {
+    this.setState(current => ({count: current.count - 1}));
+  };
+
+  //react doesn't refresh "render" function
+  render() {
+    return <div>
+      <h1>The number is {this.state.count}</h1>  
+      <button onClick={this.add}>Add</button>
+      <button onClick={this.minus}>Minus</button>
     </div>
-  );
-}
-
-Food.propTypes = {
-  name: PropTypes.string.isRequired
-}
-
-const foodILike = [
-  {
-    id: 1, 
-    name: "kimchi", 
-    rating: 4
-  },
-  {
-    id: 2,
-    name: "kimbab", 
-    rating: 5
   }
-];
-
-function renderFood(dish) {
-  return <Food key={dish.id} name={dish.name} rating={dish.rating}/>;
-}
-
-function App() {
-  return (
-    <div>
-      console.log(foodILike.map(renderFood))
-      {foodILike.map(renderFood)}
-    </div>
-  );
 }
 
 export default App;

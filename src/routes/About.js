@@ -1,6 +1,7 @@
 import React from "react";
 
-function About() {
+function About({location}) {
+    console.log(location);
     return <span>About this page: I built it</span>
 }
 
